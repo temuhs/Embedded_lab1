@@ -1,0 +1,35 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embedded Systems\Labs\Lab 1\Task1-LED + Button\Task1\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embedded Systems\Labs\Lab 1\Task1-LED + Button\Task1\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embedded Systems\Labs\Lab 1\Task1-LED + Button\Task1\Debug\Task1.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>Task1.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>Task1.map</FILE>
+  <FILE>Task1.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <declarations><FILE>C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embedded Systems\Labs\Lab 1\Task1-LED + Button\Task1\main.asm</FILE><LINE>14</LINE></declarations>
+  <start><FILE>C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embedded Systems\Labs\Lab 1\Task1-LED + Button\Task1\main.asm</FILE><LINE>20</LINE></start>
+  <reset><FILE>C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embedded Systems\Labs\Lab 1\Task1-LED + Button\Task1\main.asm</FILE><LINE>37</LINE></reset>
+  <switch><FILE>C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embedded Systems\Labs\Lab 1\Task1-LED + Button\Task1\main.asm</FILE><LINE>46</LINE></switch>
+  <green_led><FILE>C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embedded Systems\Labs\Lab 1\Task1-LED + Button\Task1\main.asm</FILE><LINE>53</LINE></green_led>
+  <delay><FILE>C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embedded Systems\Labs\Lab 1\Task1-LED + Button\Task1\main.asm</FILE><LINE>77</LINE></delay>
+  <off_leds><FILE>C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embedded Systems\Labs\Lab 1\Task1-LED + Button\Task1\main.asm</FILE><LINE>71</LINE></off_leds>
+  <yellow_led><FILE>C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embedded Systems\Labs\Lab 1\Task1-LED + Button\Task1\main.asm</FILE><LINE>59</LINE></yellow_led>
+  <red_led><FILE>C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embedded Systems\Labs\Lab 1\Task1-LED + Button\Task1\main.asm</FILE><LINE>65</LINE></red_led>
+ </LABELS>
+</ASSEMBLER_INFO>
