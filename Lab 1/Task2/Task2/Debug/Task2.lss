@@ -1,0 +1,211 @@
+
+Task2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000188  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000134  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  00000188  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000001b8  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000030  00000000  00000000  000001f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000006e0  00000000  00000000  00000228  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000647  00000000  00000000  00000908  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000273  00000000  00000000  00000f4f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  0000008c  00000000  00000000  000011c4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000390  00000000  00000000  00001250  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000000cb  00000000  00000000  000015e0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000020  00000000  00000000  000016ab  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 5e 00 	jmp	0xbc	; 0xbc <__vector_1>
+   8:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  10:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  14:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  18:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  1c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  20:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  24:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  28:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  2c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  30:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  34:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  38:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  3c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  40:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  44:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  48:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  4c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  50:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  54:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  58:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  5c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  60:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+  64:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+  74:	0e 94 40 00 	call	0x80	; 0x80 <main>
+  78:	0c 94 98 00 	jmp	0x130	; 0x130 <_exit>
+
+0000007c <__bad_interrupt>:
+  7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000080 <main>:
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#define F_CPU 16000000UL
+int main ()
+{
+	DDRB = (1 << 2)|(1 << 3)|(1 << 4); //PB2, PB3 and PB4 as an output
+  80:	8c e1       	ldi	r24, 0x1C	; 28
+  82:	84 b9       	out	0x04, r24	; 4
+	EIMSK = (1 << INT0); //enable external interrupt 0
+  84:	81 e0       	ldi	r24, 0x01	; 1
+  86:	8d bb       	out	0x1d, r24	; 29
+	EICRA = 0x03; //make INTO rising edge triggered
+  88:	83 e0       	ldi	r24, 0x03	; 3
+  8a:	80 93 69 00 	sts	0x0069, r24	; 0x800069 <__TEXT_REGION_LENGTH__+0x7f8069>
+	sei (); //enable interrupts
+  8e:	78 94       	sei
+  90:	ff cf       	rjmp	.-2      	; 0x90 <main+0x10>
+
+00000092 <delay_ms>:
+	//(M+f) => (14+7)*100 = 2s of delay
+	//2/0.000064 = 31250 (clock cycles to make 2s)
+	//2^16 = 65536 (clock is 16, that means 65536 bites)
+	//65536-31250 = 34286 (Start number for the counter)
+	
+	OCR1A = 34286;
+  92:	8e ee       	ldi	r24, 0xEE	; 238
+  94:	95 e8       	ldi	r25, 0x85	; 133
+  96:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+  9a:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+	TCCR1A = 0x00; //CTC
+  9e:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
+	TCCR1B = (1<<CS12)|(1<<CS10); //stop timer1
+  a2:	85 e0       	ldi	r24, 0x05	; 5
+  a4:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7f8081>
+	while((TIFR1&(1<<OCF1A))==0)
+  a8:	06 c0       	rjmp	.+12     	; 0xb6 <delay_ms+0x24>
+	{
+		TCNT1 = 0;
+  aa:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7f8085>
+  ae:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7f8084>
+		TIFR1 = 1<<OCF1A;
+  b2:	82 e0       	ldi	r24, 0x02	; 2
+  b4:	86 bb       	out	0x16, r24	; 22
+	//65536-31250 = 34286 (Start number for the counter)
+	
+	OCR1A = 34286;
+	TCCR1A = 0x00; //CTC
+	TCCR1B = (1<<CS12)|(1<<CS10); //stop timer1
+	while((TIFR1&(1<<OCF1A))==0)
+  b6:	b1 9b       	sbis	0x16, 1	; 22
+  b8:	f8 cf       	rjmp	.-16     	; 0xaa <delay_ms+0x18>
+		TIFR1 = 1<<OCF1A;
+	}
+		
+
+	
+}
+  ba:	08 95       	ret
+
+000000bc <__vector_1>:
+	EICRA = 0x03; //make INTO rising edge triggered
+	sei (); //enable interrupts
+	while (1); //wait here
+}
+ISR (INT0_vect) //ISR for external interrupt 0
+{
+  bc:	1f 92       	push	r1
+  be:	0f 92       	push	r0
+  c0:	0f b6       	in	r0, 0x3f	; 63
+  c2:	0f 92       	push	r0
+  c4:	11 24       	eor	r1, r1
+  c6:	2f 93       	push	r18
+  c8:	3f 93       	push	r19
+  ca:	4f 93       	push	r20
+  cc:	5f 93       	push	r21
+  ce:	6f 93       	push	r22
+  d0:	7f 93       	push	r23
+  d2:	8f 93       	push	r24
+  d4:	9f 93       	push	r25
+  d6:	af 93       	push	r26
+  d8:	bf 93       	push	r27
+  da:	ef 93       	push	r30
+  dc:	ff 93       	push	r31
+	PORTB |= (1 << 2); //toggle PORTB.2
+  de:	85 b1       	in	r24, 0x05	; 5
+  e0:	84 60       	ori	r24, 0x04	; 4
+  e2:	85 b9       	out	0x05, r24	; 5
+	delay_ms(); //wait 1 sec
+  e4:	0e 94 49 00 	call	0x92	; 0x92 <delay_ms>
+	PORTB &= ~(1 << 2); //untoggle PORTB.2
+  e8:	85 b1       	in	r24, 0x05	; 5
+  ea:	8b 7f       	andi	r24, 0xFB	; 251
+  ec:	85 b9       	out	0x05, r24	; 5
+	PORTB |= (1 << 3); //toggle PORTB.3
+  ee:	85 b1       	in	r24, 0x05	; 5
+  f0:	88 60       	ori	r24, 0x08	; 8
+  f2:	85 b9       	out	0x05, r24	; 5
+	delay_ms(); //wait 1 sec
+  f4:	0e 94 49 00 	call	0x92	; 0x92 <delay_ms>
+	PORTB &= ~(1 << 3); //untoggle PORTB.3
+  f8:	85 b1       	in	r24, 0x05	; 5
+  fa:	87 7f       	andi	r24, 0xF7	; 247
+  fc:	85 b9       	out	0x05, r24	; 5
+	PORTB |= (1 << 4); //toggle PORTB.4
+  fe:	85 b1       	in	r24, 0x05	; 5
+ 100:	80 61       	ori	r24, 0x10	; 16
+ 102:	85 b9       	out	0x05, r24	; 5
+	delay_ms(); //wait 1 sec
+ 104:	0e 94 49 00 	call	0x92	; 0x92 <delay_ms>
+	PORTB &= ~(1 << 4); //toggle PORTB.4
+ 108:	85 b1       	in	r24, 0x05	; 5
+ 10a:	8f 7e       	andi	r24, 0xEF	; 239
+ 10c:	85 b9       	out	0x05, r24	; 5
+}
+ 10e:	ff 91       	pop	r31
+ 110:	ef 91       	pop	r30
+ 112:	bf 91       	pop	r27
+ 114:	af 91       	pop	r26
+ 116:	9f 91       	pop	r25
+ 118:	8f 91       	pop	r24
+ 11a:	7f 91       	pop	r23
+ 11c:	6f 91       	pop	r22
+ 11e:	5f 91       	pop	r21
+ 120:	4f 91       	pop	r20
+ 122:	3f 91       	pop	r19
+ 124:	2f 91       	pop	r18
+ 126:	0f 90       	pop	r0
+ 128:	0f be       	out	0x3f, r0	; 63
+ 12a:	0f 90       	pop	r0
+ 12c:	1f 90       	pop	r1
+ 12e:	18 95       	reti
+
+00000130 <_exit>:
+ 130:	f8 94       	cli
+
+00000132 <__stop_program>:
+ 132:	ff cf       	rjmp	.-2      	; 0x132 <__stop_program>
