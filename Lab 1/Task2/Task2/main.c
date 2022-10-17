@@ -17,7 +17,7 @@ int main ()
 	EICRA = 0x03; //make INTO rising edge triggered
 	sei (); //enable interrupts
 	while (1){
-		}; //wait here
+			}; //wait here
 }
 ISR (INT0_vect) //ISR for external interrupt 0
 {
@@ -44,7 +44,7 @@ void delay_ms()
 	
 	OCR1A = 34286; //2s delay
 	TCCR1A = 0x00; //normal mode but operating CTC?0
-	TCCR1B = (1<<CS12)|(1<<CS10); //set the prescalar as 1024
+	TCCR1B = (1<<CS12)|(1<<CS10); //set the prescaler as 1024
 	while((TIFR1 &(1<<OCF1A))==0) //wait till the timer overflows flag is SET
 	{
 	}

@@ -20,7 +20,7 @@ ldi r20, 13
 start:
 	call reset;
 	call switch;
-	call green_led;
+	call red_led;
 	call delay;
 	call off_leds
 	call delay;
@@ -28,7 +28,7 @@ start:
 	call delay;
 	call off_leds
 	call delay;
-	call red_led;
+	call green_led;
 	call delay;
 	call off_leds
 	call delay;
@@ -45,7 +45,7 @@ reset:
 
 switch:
 	in circuit, PINB ; get state of pins on Port B
-	andi circuit, (1<<PB0) ; mask to get the value for just input pin 9
+	andi circuit, (1<<PB0) ; mask to get the value for just input pin 8
 	cpi circuit, 1 ; if pressed => output high
 	brne switch ; if button != 1, loop switch again
 	ret

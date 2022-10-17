@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embedded Systems\Labs\Lab 1\Task1-LED + Button\Task1\main.asm Thu Oct 06 17:45:06 2022
+AVRASM ver. 2.2.8  C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embedded Systems\Labs\Embedded_lab1\Lab 1\Task1-LED + Button\Task1\main.asm Mon Oct 17 19:43:51 2022
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
@@ -1006,7 +1006,7 @@ AVRASM ver. 2.2.8  C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embed
                                  start:
 000003 940e 0021                 	call reset;
 000005 940e 0026                 	call switch;
-000007 940e 002b                 	call green_led;
+000007 940e 0031                 	call red_led;
 000009 940e 0037                 	call delay;
 00000b 940e 0034                 	call off_leds
 00000d 940e 0037                 	call delay;
@@ -1014,7 +1014,7 @@ AVRASM ver. 2.2.8  C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embed
 000011 940e 0037                 	call delay;
 000013 940e 0034                 	call off_leds
 000015 940e 0037                 	call delay;
-000017 940e 0031                 	call red_led;
+000017 940e 002b                 	call green_led;
 000019 940e 0037                 	call delay;
 00001b 940e 0034                 	call off_leds
 00001d 940e 0037                 	call delay;
@@ -1031,7 +1031,7 @@ AVRASM ver. 2.2.8  C:\Users\Mario\OneDrive - Heriot-Watt University\Year 4\Embed
                                  
                                  switch:
 000026 b103                      	in circuit, PINB ; get state of pins on Port B
-000027 7001                      	andi circuit, (1<<PB0) ; mask to get the value for just input pin 9
+000027 7001                      	andi circuit, (1<<PB0) ; mask to get the value for just input pin 8
 000028 3001                      	cpi circuit, 1 ; if pressed => output high
 000029 f7e1                      	brne switch ; if button != 1, loop switch again
 00002a 9508                      	ret
