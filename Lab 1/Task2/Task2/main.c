@@ -8,13 +8,16 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #define F_CPU 16000000UL
+// Debouncing switch circuit has been implemented (Clock pin held low - pulse high)
+
 int main ()
 {
 	DDRB = (1 << 2)|(1 << 3)|(1 << 4); //PB2, PB3 and PB4 as an output
 	EIMSK = (1 << INT0); //enable external interrupt 0
 	EICRA = 0x03; //make INTO rising edge triggered
 	sei (); //enable interrupts
-	while (1); //wait here
+	while (1){
+		}; //wait here
 }
 ISR (INT0_vect) //ISR for external interrupt 0
 {
@@ -26,7 +29,7 @@ ISR (INT0_vect) //ISR for external interrupt 0
 	PORTB &= ~(1 << 3); //untoggle PORTB.3
 	PORTB |= (1 << 4); //toggle PORTB.4
 	delay_ms(); //wait 1 sec
-	PORTB &= ~(1 << 4); //toggle PORTB.4
+	PORTB &= ~(1 << 4); //untoggle PORTB.4
 }
 
 void delay_ms()
@@ -39,12 +42,15 @@ void delay_ms()
 	//2^16 = 65536 (clock is 16, that means 655396 bites)
 	//65536-31250 = 34286 (Start number for the counter)
 	
-	OCR1A = 34286;
-	TCCR1A = 0x00; //CTC
-	TCCR1B = (1<<CS12)|(1<<CS10); //stop timer1
-	while((TIFR1&(1<<OCF1A))==0)
+	OCR1A = 34286; //2s delay
+	TCCR1A = 0x00; //normal mode but operating CTC?0
+	TCCR1B = (1<<CS12)|(1<<CS10); //set the prescalar as 1024
+	while((TIFR1 &(1<<OCF1A))==0) //wait till the timer overflows flag is SET
 	{
 	}
-	TCNT1 = 0;
-	TIFR1 = 1<<OCF1A;
+	TCCR1B = 0x00; // Turn off clock1
+	TCNT1 = 0; //Reset counter
+	TIFR1 |= 1<<OCF1A; //Clear time overflow flag
+	
+	
 }
